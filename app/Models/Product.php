@@ -27,27 +27,27 @@ class Product extends CoreModel
     /**
      * @var float
      */
-    private $price;
+    private float $price;
     /**
      * @var int
      */
-    private $rate;
+    private int $rate;
     /**
      * @var int
      */
-    private $status;
+    private int $status;
     /**
      * @var int
      */
-    private $brand_id;
+    private int $language_id;
     /**
      * @var int
      */
-    private $category_id;
+    private int $category_id;
     /**
      * @var int
      */
-    private $type_id;
+    private int $etat_id;
 
     /**
      * Méthode permettant de récupérer un enregistrement de la table Product en fonction d'un id donné
@@ -92,6 +92,42 @@ class Product extends CoreModel
 
         return $results;
     }
+
+
+
+    /**
+     * Récupérer les produits mises en avant sur la home
+     *
+     * @return Category[]
+     */
+    public static function findHomeBackofficeProductsSelection()
+    {
+        $pdo = Database::getPDO();
+        $sql = '
+            SELECT *
+            FROM product
+            ORDER BY updated_at DESC
+            LIMIT 3
+        ';
+        $pdoStatement = $pdo->query($sql);
+        $products = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Product');
+
+        return $products;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Get the value of name
@@ -214,23 +250,23 @@ class Product extends CoreModel
     }
 
     /**
-     * Get the value of brand_id
+     * Get the value of language_id
      *
      * @return  int
      */
-    public function getBrandId()
+    public function getLanguageId()
     {
-        return $this->brand_id;
+        return $this->language_id;
     }
 
     /**
-     * Set the value of brand_id
+     * Set the value of language_id
      *
-     * @param  int  $brand_id
+     * @param  int  $language_id
      */
-    public function setBrandId(int $brand_id)
+    public function setLanguageId(int $language_id)
     {
-        $this->brand_id = $brand_id;
+        $this->language_id = $language_id;
     }
 
     /**
@@ -254,22 +290,22 @@ class Product extends CoreModel
     }
 
     /**
-     * Get the value of type_id
+     * Get the value of etat_id
      *
      * @return  int
      */
-    public function getTypeId()
+    public function getEtatId()
     {
-        return $this->type_id;
+        return $this->etat_id;
     }
 
     /**
-     * Set the value of type_id
+     * Set the value of etat_id
      *
-     * @param  int  $type_id
+     * @param  int  $etat_id
      */
-    public function setTypeId(int $type_id)
+    public function setEtatId(int $etat_id)
     {
-        $this->type_id = $type_id;
+        $this->etat_id = $etat_id;
     }
 }

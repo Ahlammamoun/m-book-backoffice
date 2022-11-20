@@ -3,7 +3,7 @@
     <h2>Liste des produits</h2>
     <table class="table table-hover mt-4">
         <thead>
-            <!-- <?php dump($product_list) ?> -->
+        <!--<?php dump($product_list) ?> -->
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
@@ -17,7 +17,13 @@
                     <th scope="row"><?= $productObject->getId() ?></th>
                     <td><?= $productObject->getName() ?></td>
                     <td><?= $productObject->getPrice() ?> £</td>
-                    <td><?= $productObject->getStatus() ?></td>
+                    <td><?php 
+                    if ($productObject->getStatus() === 1){
+                        echo'disponible';
+                    }else{
+                        echo'indisponible';
+                    }
+                    ?></td>
                     <td class="text-end">
                         <a href="" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

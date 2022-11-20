@@ -134,18 +134,18 @@ class Category extends CoreModel
     }
 
     /**
-     * Récupérer les 5 catégories mises en avant sur la home
+     * Récupérer les catégories mises en avant sur la home
      *
      * @return Category[]
      */
-    public function findAllHomepage()
+    public static function findHomeBackofficeCategoriesSelection()
     {
         $pdo = Database::getPDO();
         $sql = '
             SELECT *
             FROM category
-            WHERE home_order > 0
-            ORDER BY home_order ASC
+            ORDER BY updated_at DESC
+            LIMIT 3
         ';
         $pdoStatement = $pdo->query($sql);
         $categories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Category');

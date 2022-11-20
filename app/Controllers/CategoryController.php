@@ -25,6 +25,13 @@ public function list()
         'category_list' => $categoryList,
     
     ]);
+
+    /*on peut également faire plus rapide
+    $this->show('category/list',[
+        'category_list' => Category::findAll()
+    ]);*/
+
+
 }
 /**
  * méthode qui gère la page contenant le formulaire d'ajout d'une categorie
