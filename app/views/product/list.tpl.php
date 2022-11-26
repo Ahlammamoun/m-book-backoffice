@@ -7,8 +7,12 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
+                <th scope="col">Decription</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Status</th>
+
+
+                
             </tr>
         </thead>
         <tbody>
@@ -16,6 +20,7 @@
                 <tr>
                     <th scope="row"><?= $productObject->getId() ?></th>
                     <td><?= $productObject->getName() ?></td>
+                    <td><?= $productObject->getDescription() ?></td>
                     <td><?= $productObject->getPrice() ?> £</td>
                     <td><?php 
                     if ($productObject->getStatus() === 1){
@@ -25,16 +30,16 @@
                     }
                     ?></td>
                     <td class="text-end">
-                        <a href="" class="btn btn-sm btn-warning">
+                        <a href="<?= $router->generate('product-update',['id' => $productObject->getId()]) ?>" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Oui, je veux supprimer</a>
-                                <a class="dropdown-item" href="#" data-toggle="dropdown">Oups !</a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="dropdown">Oups !</a>
                             </div>
                         </div>
                     </td>

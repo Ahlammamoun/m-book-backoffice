@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+
 // Classe mère de tous les Models
 // On centralise ici toutes les propriétés et méthodes utiles pour TOUS les Models
-class CoreModel
+// abstract bloque l'instanciation de la class Coremodel
+abstract class CoreModel
 {
     /**
      * @var int
      */
-    protected $id;
+    protected  $id;
     /**
      * @var string
      */
@@ -49,4 +51,24 @@ class CoreModel
     {
         return $this->updated_at;
     }
+
+
+//si l'entité existe en bdd on update autrement on insert
+public function save()
+{
+if($this->getId() > 0){
+    //on update 
+    return $this->update();
+}else{
+    //il n'y a pas d'id jamais entré en bdd
+    return $this->insert();
+}
+
+
+}
+
+abstract public function insert();
+abstract public function update();
+
+
 }

@@ -53,7 +53,7 @@ $router->map(
 );
 
 
-//page liste de categories
+//route pour la page liste de categories
 $router->map(
     'GET',
     '/category/list',
@@ -63,7 +63,7 @@ $router->map(
     ],
     'category-list'
 );
-//page qui affiche le form ajout d'une categorie
+//route pour la page qui affiche le form ajout d'une categorie
 $router->map(
     'GET',
     '/category/add',
@@ -72,6 +72,39 @@ $router->map(
         'controller' => '\App\Controllers\CategoryController' // On indique le FQCN de la classe
     ],
     'category-add'
+);
+
+
+//route pour la page recevant et traitant les données envoyées par le formulaire d'ajout d'une catégorie
+$router->map(
+    'POST',
+    '/category/add',
+    [
+        'method' => 'create',
+        'controller' => '\App\Controllers\CategoryController' // On indique le FQCN de la classe
+    ],
+    'category-create'
+);
+
+//route d'affichage du formulaire d'update d'une catégory 
+$router->map(
+    'GET',
+    '/category/update/[i:id]',
+    [
+        'method' => 'update',
+        'controller' => '\App\Controllers\CategoryController' // On indique le FQCN de la classe
+    ],
+    'category-update'
+);
+//route qui gere les donnees du form update des categories
+$router->map(
+    'POST',
+    '/category/update/[i:id]',
+    [
+        'method' => 'updatePost',
+        'controller' => '\App\Controllers\CategoryController' // On indique le FQCN de la classe
+    ],
+    'category-update-post'
 );
 
 //page liste de produit
@@ -96,7 +129,37 @@ $router->map(
 );
 
 
+//gère les donnée du form produit
+$router->map(
+    'POST',
+    '/product/add',
+    [
+        'method' => 'create',
+        'controller' => '\App\Controllers\ProductController' // On indique le FQCN de la classe
+    ],
+    'product-create'
+);
+//route d'affichage du form d'update un produit
+$router->map(
+    'GET',
+    '/product/update/[i:id]',
+    [
+        'method' => 'update',
+        'controller' => '\App\Controllers\ProductController' // On indique le FQCN de la classe
+    ],
+    'product-update'
+);
 
+//route qui gere les donnees du form update des produits
+$router->map(
+    'POST',
+    '/product/update/[i:id]',
+    [
+        'method' => 'updatePost',
+        'controller' => '\App\Controllers\ProductController' // On indique le FQCN de la classe
+    ],
+    'product-update-post'
+);
 /*Dispatch */
 
 // On demande à AltoRouter de trouver une route qui correspond à l'URL courante

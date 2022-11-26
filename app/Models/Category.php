@@ -99,7 +99,7 @@ class Category extends CoreModel
      * @param int $categoryId ID de la catégorie
      * @return Category
      */
-    public function find($categoryId)
+    static public function find($categoryId)
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
@@ -151,5 +151,75 @@ class Category extends CoreModel
         $categories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Category');
 
         return $categories;
+    }
+
+    public function insert()
+    {
+        // Récupération de l'objet PDO représentant la connexion à la DB
+        $pdo = Database::getPDO();
+
+        // Ecriture de la requête INSERT INTO
+        //On met des côtes pour les chaînes de caractères dans les VALUES
+        $sql = "
+            INSERT INTO `category` (name, subtitle, picture)
+            VALUES (:name, :subtitle, :picture)
+            
+        ";
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':name', $this->getName(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':subtitle', $this->getSubtitle(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+        // Execution de la requête d'insertion (exec, pas query)
+        $insertedRows = $pdoStatement->rowCount();
+
+        // Si au moins une ligne ajoutée
+        if ($insertedRows > 0) {
+            // Alors on récupère l'id auto-incrémenté généré par MySQL
+            $this->id = $pdo->lastInsertId();
+
+            // On retourne VRAI car l'ajout a parfaitement fonctionné
+            return true;
+            // => l'interpréteur PHP sort de cette fonction car on a retourné une donnée
+        }
+
+        // Si on arrive ici, c'est que quelque chose n'a pas bien fonctionné => FAUX
+        return false;
+    }
+
+
+    public function update()
+    {
+
+        $pdo = Database::getPDO();
+        $sql =   ("
+        UPDATE `category`
+        SET
+            name = :name,
+            subtitle = :subtitle,
+            picture = :picture,
+            home_order = :home_order,
+            updated_at = NOW()
+        WHERE id = :id
+    ");
+        $pdoStatement = $pdo->prepare($sql);
+
+
+
+        $pdoStatement->bindValue(':id', $this->getId(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':name', $this->getName(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':subtitle', $this->getSubtitle(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':home_order', $this->getHomeOrder(), PDO::PARAM_INT);
+
+
+        $pdoStatement->execute();
+
+        $updatedRows = $pdoStatement->rowCount();
+
+        return ($updatedRows > 0);
     }
 }

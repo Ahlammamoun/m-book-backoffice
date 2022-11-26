@@ -1,7 +1,7 @@
 <div class="container my-4">
         <a href="<?= $router->generate('product-list')?>" class="btn btn-dark float-end">Retour</a>
-        <h2>Ajouter un produit</h2>
-        
+        <h2>Modifier un produit</h2>
+     
         <form action="" method="POST" class="mt-5">
             <div class="mb-3">
                 <label for="name" class="form-label">Nom</label>
