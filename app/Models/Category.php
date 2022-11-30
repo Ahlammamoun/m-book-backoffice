@@ -222,4 +222,20 @@ class Category extends CoreModel
 
         return ($updatedRows > 0);
     }
+
+    public function delete()
+    {
+        $pdo = Database::getPDO();
+        $sql = '
+            DELETE FROM category
+            WHERE id = :id
+        ';
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        $deletedRows = $pdoStatement->rowCount();
+
+        return ($deletedRows > 0);
+    }
 }

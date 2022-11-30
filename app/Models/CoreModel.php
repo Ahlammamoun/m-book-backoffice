@@ -11,7 +11,7 @@ abstract class CoreModel
     /**
      * @var int
      */
-    protected  $id;
+    protected $id;
     /**
      * @var string
      */
@@ -53,22 +53,18 @@ abstract class CoreModel
     }
 
 
-//si l'entité existe en bdd on update autrement on insert
-public function save()
-{
-if($this->getId() > 0){
-    //on update 
-    return $this->update();
-}else{
-    //il n'y a pas d'id jamais entré en bdd
-    return $this->insert();
-}
+    //si l'entité existe en bdd on update autrement on insert
+    public function save()
+    {
+        if ($this->getId() > 0) {
+            //on update
+            return $this->update();
+        } else {
+            //il n'y a pas d'id jamais entré en bdd
+            return $this->insert();
+        }
+    }
 
-
-}
-
-abstract public function insert();
-abstract public function update();
-
-
+    abstract public function insert();
+    abstract public function update();
 }

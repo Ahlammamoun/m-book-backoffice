@@ -106,6 +106,17 @@ $router->map(
     ],
     'category-update-post'
 );
+$router->map(
+    'GET',
+    '/category/delete/[i:id]',
+    [
+        'method' => 'delete',
+        'controller' => '\App\Controllers\CategoryController' // On indique le FQCN de la classe
+    ],
+    'category-delete'
+);
+
+
 
 //page liste de produit
 $router->map(
@@ -160,6 +171,21 @@ $router->map(
     ],
     'product-update-post'
 );
+
+$router->map(
+    'GET',
+    '/product/delete/[i:id]',
+    [
+        'method' => 'delete',
+        'controller' => '\App\Controllers\ProductController' // On indique le FQCN de la classe
+    ],
+    'product-delete'
+);
+
+
+
+
+
 /*Dispatch */
 
 // On demande à AltoRouter de trouver une route qui correspond à l'URL courante

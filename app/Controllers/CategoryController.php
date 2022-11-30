@@ -82,7 +82,7 @@ class CategoryController extends CoreController
         //on insert les données en bdd
         if ($categoryToInsert->save()) {
             //si l'ajout en bdd est ok , on redirige vers la liste des catégories
-            header('Location: ' . $router->generate('category-list'));
+            $this->redirect('category-list');
         };
 
         //dump($categoryToInsert);
@@ -122,7 +122,20 @@ class CategoryController extends CoreController
 
         if ($categoryToUpdate->save()) {
             //si l'ajout en bdd est ok , on redirige vers la liste des catégories
-            header('Location: ' . $router->generate('category-list'));
+
+            $this->redirect('category-list');
         };
+    }
+
+    public function delete($id)
+    {
+
+        $categoryDelete = Category::find($id);
+
+        if ($categoryDelete->delete()) {
+            $this->redirect('category-list');
+        } else {
+            exit("Echec lors de la suppression");
+        }
     }
 }

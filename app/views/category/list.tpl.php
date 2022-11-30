@@ -1,4 +1,3 @@
-
 <div class="container my-4">
     <a href="<?= $router->generate('category-add') ?>" class="btn btn-dark float-end">Ajouter</a>
     <h2>Liste des catégories</h2>
@@ -20,18 +19,14 @@
                     <td><?= $CategoryObject->getSubtitle() ?></td>
                     <td><?= $CategoryObject->getHomeOrder() ?></td>
                     <td class="text-end">
-                        <a href="<?= $router->generate('category-update',['id' => $CategoryObject->getId()]) ?>" class="btn btn-sm btn-warning">
+                        <a href="<?= $router->generate('category-update', ['id' => $CategoryObject->getId()]) ?>" class="btn btn-sm btn-dark">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" data-bs-toggle="dropdown" >Oui, je veux supprimer</a>
-                                <a class="dropdown-item" href="#" data-bs-toggle="dropdown">Oups !</a>
-                            </div>
-                        </div>
+                        <a href="<?= $router->generate('category-delete', ['id' => $CategoryObject->getId()]) ?>" class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash-o"aria-hidden="true"></i>
+                        </a>
+
+
                     </td>
                 </tr>
             <?php endforeach; ?>

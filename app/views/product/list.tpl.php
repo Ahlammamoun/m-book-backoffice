@@ -3,7 +3,7 @@
     <h2>Liste des produits</h2>
     <table class="table table-hover mt-4">
         <thead>
-        <!--<?php dump($product_list) ?> -->
+            <!--<?php dump($product_list) ?> -->
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
@@ -12,7 +12,7 @@
                 <th scope="col">Status</th>
 
 
-                
+
             </tr>
         </thead>
         <tbody>
@@ -22,29 +22,24 @@
                     <td><?= $productObject->getName() ?></td>
                     <td><?= $productObject->getDescription() ?></td>
                     <td><?= $productObject->getPrice() ?> £</td>
-                    <td><?php 
-                    if ($productObject->getStatus() === 1){
-                        echo'disponible';
-                    }else{
-                        echo'indisponible';
-                    }
-                    ?></td>
+                    <td><?php
+                        if ($productObject->getStatus() === 1) {
+                            echo 'disponible';
+                        } else {
+                            echo 'indisponible';
+                        }
+                        ?></td>
+                      
                     <td class="text-end">
-                        <a href="<?= $router->generate('product-update',['id' => $productObject->getId()]) ?>" class="btn btn-sm btn-warning">
+                        <a href="<?= $router->generate('product-update', ['id' => $productObject->getId()]) ?>" class="btn btn-sm btn-dark">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Oui, je veux supprimer</a>
-                                <a class="dropdown-item" href="#" data-bs-toggle="dropdown">Oups !</a>
-                            </div>
-                        </div>
+                        <a href="<?= $router->generate('product-delete', ['id' => $productObject->getId()]) ?>" class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
                     </td>
                 </tr>
-                <?php endforeach; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>

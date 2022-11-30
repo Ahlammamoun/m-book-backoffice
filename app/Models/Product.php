@@ -229,14 +229,6 @@ class Product extends CoreModel
         $this->etat_id     = $etat_id;
     }
 
-
-
-
-
-
-
-
-
     /**
      * Méthode permettant de récupérer un enregistrement de la table Product en fonction d'un id donné
      *
@@ -359,4 +351,29 @@ class Product extends CoreModel
 
         
     }
+
+
+    public function delete()
+    {
+        $pdo = Database::getPDO();
+        $sql = '
+            DELETE FROM product
+            WHERE id = :id
+        ';
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        $deletedRows = $pdoStatement->rowCount();
+
+        return ($deletedRows > 0);
+    }
+
+
+
+
+
+
+
+
 }

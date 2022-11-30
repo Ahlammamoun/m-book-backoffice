@@ -4,6 +4,16 @@ namespace App\Controllers;
 
 class CoreController
 {
+
+
+
+
+    protected function redirect($routeId)
+    {
+
+        global $router;
+        header('Location: ' . $router->generate($routeId));
+    }
     /**
      * Méthode permettant d'afficher du code HTML en se basant sur les views
      *
