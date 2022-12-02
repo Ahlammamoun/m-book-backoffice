@@ -99,13 +99,13 @@ class Category extends CoreModel
      * @param int $categoryId ID de la catégorie
      * @return Category
      */
-    static public function find($categoryId)
+     static public function find($id)
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
 
         // écrire notre requête
-        $sql = 'SELECT * FROM `category` WHERE `id` =' . $categoryId;
+        $sql = 'SELECT * FROM `category` WHERE `id` =' . $id;
 
         // exécuter notre requête
         $pdoStatement = $pdo->query($sql);
@@ -123,7 +123,7 @@ class Category extends CoreModel
      * @return Category[]
      */
     //static permet de faire appel à findAll dans le controller sans avoir à instancier un objet et untiliser une variable vide
-    static public function findAll()
+    static public  function findAll()
     {
         $pdo = Database::getPDO();
         $sql = 'SELECT * FROM `category`';

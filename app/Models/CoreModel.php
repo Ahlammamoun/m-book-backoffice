@@ -66,9 +66,9 @@ abstract class CoreModel
     }
 
 
-
-    abstract public function find($id);
-    abstract public function findAll();
+ 
+    abstract static public function find($id);
+    abstract static public function findAll();
 
     abstract public function insert();
     abstract public function update();

@@ -183,7 +183,27 @@ $router->map(
 );
 
 
+//route pour le formulaire de connexion
+$router->map(
+    'GET',
+    '/user/login',
+    [
+        'method' => 'login',
+        'controller' => '\App\Controllers\UserController' // On indique le FQCN de la classe
+    ],
+    'user-login'
+);
 
+//route qui traite les infos envoyé par le formulaire
+$router->map(
+    'POST',
+    '/user/login',
+    [
+        'method' => 'loginPost',
+        'controller' => '\App\Controllers\UserController' // On indique le FQCN de la classe
+    ],
+    'user-login-post'
+);
 
 
 /*Dispatch */

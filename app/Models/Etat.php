@@ -30,7 +30,7 @@ class Type extends CoreModel
      * @param int $typeId ID de l'etat
      * @return Etat
      */
-    public function find($etatId)
+   static  public function find($etatId)
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
@@ -53,7 +53,7 @@ class Type extends CoreModel
      *
      * @return Etat[]
      */
-    public function findAll()
+    static public function findAll()
     {
         $pdo = Database::getPDO();
         $sql = 'SELECT * FROM `etat`';
@@ -82,7 +82,17 @@ class Type extends CoreModel
 
         return $etats;
     }
+    public function update(){
 
+    }
+
+    public function insert(){
+
+    }
+public function delete()
+{
+
+}
     /**
      * Get the value of name
      *
