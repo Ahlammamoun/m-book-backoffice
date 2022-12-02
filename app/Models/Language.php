@@ -30,7 +30,7 @@ class Language extends CoreModel
      * @param int $languagedId ID de la langue
      * @return Language
      */
-    public function find($languageId)
+   static public function find($languageId)
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
@@ -56,7 +56,7 @@ class Language extends CoreModel
      *
      * @return Language[]
      */
-    public function findAll()
+   static public function findAll()
     {
         $pdo = Database::getPDO();
         $sql = 'SELECT * FROM `language`';
@@ -147,6 +147,10 @@ class Language extends CoreModel
 
         // On retourne VRAI, si au moins une ligne ajoutée
         return ($updatedRows > 0);
+    }
+    public function delete(){
+
+
     }
 
     /**
