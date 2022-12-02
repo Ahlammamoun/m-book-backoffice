@@ -65,6 +65,12 @@ abstract class CoreModel
         }
     }
 
+
+
+    abstract public function find($id);
+    abstract public function findAll();
+
     abstract public function insert();
     abstract public function update();
+    abstract public function delete();
 }
