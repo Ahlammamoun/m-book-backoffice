@@ -230,6 +230,41 @@ $router->map(
     'user-logout'
 );
 
+
+//route vers la page qui permet de lister les utilisateurs
+$router->map(
+    'GET',
+    '/user/list',
+    [
+        'method' => 'list',
+        'controller' => '\App\Controllers\UserController' // On indique le FQCN de la classe
+    ],
+    'user-list'
+);
+
+
+//route qui permet l'aafichage de la création d'un user
+$router->map(
+    'GET',
+    '/user/add',
+    [
+        'method' => 'add',
+        'controller' => '\App\Controllers\UserController' // On indique le FQCN de la classe
+    ],
+    'user-add'
+);
+
+
+//gère les données du form users
+$router->map(
+    'POST',
+    '/user/add',
+    [
+        'method' => 'create',
+        'controller' => '\App\Controllers\UserController' // On indique le FQCN de la classe
+    ],
+    'user-create'
+);
 /*Dispatch */
 
 // On demande à AltoRouter de trouver une route qui correspond à l'URL courante

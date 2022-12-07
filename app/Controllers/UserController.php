@@ -7,6 +7,26 @@ use App\Models\AppUser;
 class UserController extends CoreController
 {
 
+    public function add()
+    {
+        $this->checkAuthorization(['admin']);
+        $this->show('user/add');
+    }
+
+
+    public function list()
+    {
+        $this->checkAuthorization(['admin']);
+        $usersList = AppUser::findAll();
+        dump($usersList);
+
+        $this->show('user/list', [
+            'users_list' => $usersList,
+        ]);
+    }
+
+
+
 
     public function login()
     {

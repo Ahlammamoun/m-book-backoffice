@@ -21,4 +21,13 @@ class ErrorController extends CoreController
         // Puis on gère l'affichage
         $this->show('error/err404');
     }
+
+    public function err403()
+    {
+        header('HTTP/1.1 403 Forbidden');
+        $this->show('error/err403');
+        exit();
+    }
+
+
 }

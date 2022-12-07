@@ -40,7 +40,7 @@ class CategoryController extends CoreController
 
     public function add()
     {
-
+        $this->checkAuthorization(['catalog-manager']);
         $this->show('category/add');
     }
 
@@ -54,6 +54,7 @@ class CategoryController extends CoreController
 
     public function create()
     {
+
         global $router;
         //dump($_POST);
         //on récupère les infos envoyées par le formulaire

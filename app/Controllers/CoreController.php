@@ -5,15 +5,36 @@ namespace App\Controllers;
 class CoreController
 {
 
-
-
-
     protected function redirect($routeId)
     {
 
         global $router;
         header('Location: ' . $router->generate($routeId));
     }
+
+    protected function checkAuthorization($authorizedRoles)
+    {
+
+        
+            if (isset($_SESSION['userId'])) {
+            $user = $_SESSION['userObject'];
+
+            $role = $user->getRole();
+            //dump($role);
+
+            if (in_array($role, $authorizedRoles)) {
+                return true;
+            } else {
+               
+               $errorController = new ErrorController();
+               $errorController->err403();
+               
+            }
+        } else {
+            $this->redirect('user-login');
+        }
+    }
+
     /**
      * Méthode permettant d'afficher du code HTML en se basant sur les views
      *

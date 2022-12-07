@@ -13,7 +13,7 @@ class AppUser extends CoreModel
     private $firstname;
     private $lastname;
     private $role;
-    private $status;
+    private int $status;
 
 
 
