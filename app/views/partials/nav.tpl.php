@@ -30,6 +30,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sélections Accueil &amp; Footer</a>
                     </li>
+                    <li class="nav-item">
+                        <?php if(!isset($_SESSION['userId'])): ?>
+                        <a class="nav-link" href="<?= $router->generate('user-login')?>">Connexion</a>
+                        <?php else: ?>
+                            <a class="nav-link" href="<?= $router->generate('user-logout')?>">Déconnexion</a>
+                            <?php endif; ?>
+                    </li>
                 </ul>
             </div>
         </div>

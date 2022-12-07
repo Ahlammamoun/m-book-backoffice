@@ -23,19 +23,56 @@ class UserController extends CoreController
 
         //dump($_POST);
         $user = AppUser::findByEmail($email);
-        dump($user);
-dump($password);
+        //dump($user);
+        //dump($password);
         if ($user !== false) {
 
 
-            dump($user->getPassword());
-            dump($password);
+            //dump($user->getPassword());
+            //dump($password);
             if (password_verify($password, $user->getPassword())) {
-                exit('connexion ok');
+                //ajout d'informations à la session de l'utilisateur 
+                echo 'connexion ok';
+                $_SESSION['userId'] = $user->getId();
+                $_SESSION['userObject'] = $user;
+                //dump($_SESSION);
+                $this->redirect('main-home');
             } else {
                 exit('email ou mot de passe incorect');
             }
             $this->show('user/login');
         }
     }
+
+
+    public function logout()
+    {
+
+
+        //on supprime certaine informations de la session
+        unset($_SESSION['userId']);
+        unset($_SESSION['userObject']);
+
+
+        //on redirige vers l'acceuil
+        $this->redirect('main-home');
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -11,6 +11,19 @@
 // mais aussi d'activer le chargement automatique des classes (convention PSR-4)
 require_once '../vendor/autoload.php';
 
+
+
+
+
+
+//activation du mécanisme des sessions
+session_start();
+//dump($_SESSION);
+
+
+
+
+
 /* ------------
 --- ROUTAGE ---
 -------------*/
@@ -205,6 +218,17 @@ $router->map(
     'user-login-post'
 );
 
+
+//route qui permet de se deconnecter
+$router->map(
+    'GET',
+    '/user/logout',
+    [
+        'method' => 'logout',
+        'controller' => '\App\Controllers\UserController' // On indique le FQCN de la classe
+    ],
+    'user-logout'
+);
 
 /*Dispatch */
 

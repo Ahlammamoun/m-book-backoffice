@@ -6,9 +6,8 @@
         </div>
 
         <div class="form-group"><label for="password">Mot de passe</label>
-            <input type="text" class="form-control" name="password" id="password">
-
-
+            <input type="password" class="form-control" name="password" id="password" type="text">
+    
         </div>
         <button type="submit" class="btn btn-dark btn-block mt-5">Se connecter</button>
 
