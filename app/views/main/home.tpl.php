@@ -27,7 +27,7 @@
                                         </a>
                                         <!-- Example single danger button -->
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle"
+                                            <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                             </button>
@@ -71,7 +71,7 @@
                                         </a>
                                         <!-- Example single danger button -->
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle"
+                                            <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                             </button>

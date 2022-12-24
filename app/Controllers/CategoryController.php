@@ -40,7 +40,7 @@ class CategoryController extends CoreController
 
     public function add()
     {
-        $this->checkAuthorization(['catalog-manager']);
+        $this->checkAuthorization(['admin']);
         $this->show('category/add');
     }
 

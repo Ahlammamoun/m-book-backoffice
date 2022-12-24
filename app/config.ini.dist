@@ -3,7 +3,6 @@
 ;   - ensuite, dans ce fichier config.ini, définir une valeur pour chaque paramètre
 
 ; base de données
-DB_HOST=localhost
-DB_USERNAME=explorateur
-DB_PASSWORD=Ereul9Aeng
-DB_NAME=oshop
+DB_HOST=
+DB_USERNAME=
+DB_NAME=

@@ -58,7 +58,7 @@ class UserController extends CoreController
                 //dump($_SESSION);
                 $this->redirect('main-home');
             } else {
-                exit('email ou mot de passe incorect');
+                exit('email ou mot de passe incorrect');
             }
             $this->show('user/login');
         }
@@ -72,27 +72,9 @@ class UserController extends CoreController
         //on supprime certaine informations de la session
         unset($_SESSION['userId']);
         unset($_SESSION['userObject']);
-
+       
 
         //on redirige vers l'acceuil
         $this->redirect('main-home');
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

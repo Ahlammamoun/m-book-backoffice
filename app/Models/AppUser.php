@@ -143,7 +143,7 @@ class AppUser extends CoreModel
 
 
 
-   static public function find($id)
+    static public function find($id)
     {
 
         $pdo = Database::getPDO();
@@ -161,10 +161,7 @@ class AppUser extends CoreModel
 
         $appUser = $pdoStatement->fetchObject(self::class);
 
-        return $appUser; 
-
-
-
+        return $appUser;
     }
     static public function findAll()
     {
@@ -179,8 +176,6 @@ class AppUser extends CoreModel
         $pdoStatement = $pdo->query($sql);
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
         return $results;
-
-
     }
 
 
@@ -236,7 +231,7 @@ class AppUser extends CoreModel
     }
 
 
-    
+
     public function update()
     {
         $pdo = Database::getPDO();
@@ -265,9 +260,6 @@ class AppUser extends CoreModel
         $updatedRows = $pdoStatement->rowCount();
 
         return ($updatedRows > 0);
-
-
-
     }
     public function delete()
     {
@@ -283,10 +275,5 @@ class AppUser extends CoreModel
         $deletedRows = $pdoStatement->rowCount();
 
         return ($deletedRows > 0);
-
-
-
-
     }
-
 }
