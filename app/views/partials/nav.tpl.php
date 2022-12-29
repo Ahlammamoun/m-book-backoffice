@@ -32,12 +32,19 @@
                     <a class="nav-link" href="<?= $router->generate('user-list') ?>">utilisateurs</a>
                 </li>
                 <li class="nav-item">
-                    <?php if (!isset($_SESSION['userId'])) : ?>
+                    <?php if (!$isUserLoggedIn) : ?>
                         <a class="nav-link" href="<?= $router->generate('user-login') ?>">Connexion</a>
                     <?php else : ?>
                         <a class="nav-link" href="<?= $router->generate('user-logout') ?>">Déconnexion</a>
                     <?php endif; ?>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link disabled text-warning">
+                <?php if (isset($loggedInUser)){
+                 echo 'Bonjour ' . $loggedInUser->getFirstname() . ' (' . $loggedInUser->getRole() . ')';
+                } ?>
+                </a>
+                    </li>
             </ul>
         </div>
     </div>

@@ -14,11 +14,82 @@ class UserController extends CoreController
     }
 
 
+    public function create()
+    {
+
+        //dump($_POST);
+        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+        $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        $role = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
+        $status = filter_input(INPUT_POST, 'status', FILTER_VALIDATE_INT);
+        $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+
+
+        $errorsList = [];
+        if ($lastname === '') {
+            // Ajout du message d'erreur dans le tableau des erreurs
+            $errorsList[] = 'Le nom doit être renseigné';
+        }
+        if ($firstname === '') {
+            $errorsList[] = 'Le prénom doit être renseigné';
+        }
+        if ($email === false) {
+            $errorsList[] = 'L\'email n\'a pas un format valide';
+        }
+        if (strlen($password) < 8) {
+            $errorsList[] = 'Le mot de passe doit comporter au moins 8 caractères';
+        }
+        if ($role === '') {
+            $errorsList[] = 'Le role doit être renseigné';
+        }
+        if ($status === '') {
+            $errorsList[] = 'Le statut doit être renseigné';
+        }
+
+
+        //dump($firstname);
+        //on créer un objet user on lui assigne nos valeurs
+        $userToInsert = new AppUser();
+        $userToInsert->setFirstname($firstname);
+        $userToInsert->setLastname($lastname);
+        $userToInsert->setEmail($email);
+        $userToInsert->setPassword(password_hash($password, PASSWORD_DEFAULT));
+        $userToInsert->setRole($role);
+        $userToInsert->setStatus($status);
+
+
+        if (!empty($errorsList)) {
+
+            $this->show('user/add', [
+                'errors_list' => $errorsList,
+                'user' => $userToInsert
+            ]);
+        } else {
+
+
+
+
+            //dump($userToInsert);
+            //on insert les données en bdd
+            if ($userToInsert->save()) {
+                //si l'ajout en bdd est ok , on redirige vers la liste des users
+                $this->redirect('user-list');
+            };
+        }
+    }
+
+
+
+
+
     public function list()
     {
         $this->checkAuthorization(['admin']);
         $usersList = AppUser::findAll();
-        dump($usersList);
+        //dump($usersList);
 
         $this->show('user/list', [
             'users_list' => $usersList,
@@ -72,7 +143,7 @@ class UserController extends CoreController
         //on supprime certaine informations de la session
         unset($_SESSION['userId']);
         unset($_SESSION['userObject']);
-       
+
 
         //on redirige vers l'acceuil
         $this->redirect('main-home');

@@ -15,8 +15,8 @@ class CoreController
     protected function checkAuthorization($authorizedRoles)
     {
 
-        
-            if (isset($_SESSION['userId'])) {
+
+        if (isset($_SESSION['userId'])) {
             $user = $_SESSION['userObject'];
 
             $role = $user->getRole();
@@ -25,10 +25,9 @@ class CoreController
             if (in_array($role, $authorizedRoles)) {
                 return true;
             } else {
-               
-               $errorController = new ErrorController();
-               $errorController->err403();
-               
+
+                $errorController = new ErrorController();
+                $errorController->err403();
             }
         } else {
             $this->redirect('user-login');
@@ -58,6 +57,12 @@ class CoreController
         // définir l'url absolue pour la racine du site
         // /!\ != racine projet, ici on parle du répertoire public/
         $viewData['baseUri'] = $_SERVER['BASE_URI'];
+
+        $viewData['isUserLoggedIn'] = isset($_SESSION['userId']);
+        if (isset($_SESSION['userObject'])) {
+            $viewData['loggedInUser'] = $_SESSION['userObject'];
+        }
+
 
         // On veut désormais accéder aux données de $viewData, mais sans accéder au tableau
         // La fonction extract permet de créer une variable pour chaque élément du tableau passé en argument

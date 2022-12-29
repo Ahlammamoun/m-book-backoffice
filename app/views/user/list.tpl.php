@@ -28,7 +28,7 @@
                         if ($userObject->getStatus() === 1) {
                             echo 'Actif';
                         } else {
-                            echo 'Désactivé';
+                            echo 'Désactivé/bloqué';
                         }
                         ?></td>
                       
