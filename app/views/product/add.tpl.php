@@ -68,7 +68,7 @@
 
 
 
-            <div class="d-grid gap-2">
+            <div class="row">
                 <button type="submit" class="btn btn-dark mt-5">Valider</button>
             </div>
         </form>

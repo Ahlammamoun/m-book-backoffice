@@ -40,7 +40,7 @@ class CategoryController extends CoreController
 
     public function add()
     {
-        $this->checkAuthorization(['admin']);
+
         $this->show('category/add');
     }
 
@@ -139,5 +139,24 @@ class CategoryController extends CoreController
         } else {
             exit("Echec lors de la suppression");
         }
+    }
+
+    //formulaire de selection des categories sur l'acceuil
+
+    public function homeSelection()
+    {
+        //on récupère les informations
+
+        $categoriesList = Category::findAll();
+
+        //on les affiche
+        $this->show('category/home-selection', [
+
+
+            'categories_list' => $categoriesList,
+        ]);
+        
+
+
     }
 }

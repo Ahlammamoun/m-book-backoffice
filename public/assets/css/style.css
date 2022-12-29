@@ -3,13 +3,15 @@
 }
 
 .container.my-4 {
- 
+
   background-color: gold;
 }
 
-th{
-
-
+th {
 
   width: 30%;
+}
+
+form.mt-5 {
+  background-color: gold;
 }

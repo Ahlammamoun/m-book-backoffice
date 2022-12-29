@@ -9,14 +9,20 @@ class UserController extends CoreController
 
     public function add()
     {
-        $this->checkAuthorization(['admin']);
-        $this->show('user/add');
+       $token = bin2hex(random_bytes(32));
+       $_SESSION['token'] = $token;
+
+       //dump($token);
+        $this->show('user/add', [
+            'token' => $token,
+        ]);
     }
 
 
     public function create()
     {
-
+       
+        
         //dump($_POST);
         $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
         $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);

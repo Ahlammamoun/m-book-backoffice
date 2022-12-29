@@ -30,7 +30,7 @@ class ProductController extends CoreController
      */
     public function add()
     {
-        $this->checkAuthorization(['admin']);
+       
         $this->show('product/add');
     }
 

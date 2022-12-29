@@ -21,7 +21,7 @@
                 URL relative d'une image (jpg, gif, svg ou png) fournie sur <a href="https://benoclock.github.io/S06-images/" target="_blank">cette page</a>
             </small>
         </div>
-        <div class="d-grid gap-2">
+        <div class="row">
             <button type="submit" class="btn btn-dark mt-5">Valider</button>
         </div>
     </form>

@@ -129,7 +129,15 @@ $router->map(
     'category-delete'
 );
 
-
+$router->map(
+    'GET',
+    '/category/home-selection',
+    [
+        'method' => 'homeSelection',
+        'controller' => '\App\Controllers\CategoryController' // On indique le FQCN de la classe
+    ],
+    'category-home-selection'
+);
 
 //page liste de produit
 $router->map(
@@ -270,18 +278,20 @@ $router->map(
 // On demande à AltoRouter de trouver une route qui correspond à l'URL courante
 $match = $router->match();
 
-// Ensuite, pour dispatcher le code dans la bonne méthode, du bon Controller
-// On délègue à une librairie externe : https://packagist.org/packages/benoclock/alto-dispatcher
-// 1er argument : la variable $match retournée par AltoRouter
-// 2e argument : le "target" (controller & méthode) pour afficher la page 404
-// ATTENTION :
-// - en S05, avec notre dispatch "maison", les informations extraites de l'URL
-// étaient fournie à la méthode du contrôleur dans un tableau associatif
-// - en S06 avec AltoDispatcher, celui-ci fournit les informations extraites
-// de l'URL avec un paramètre par information.
-// => si j'ai une seule information dynamique dans l'URL, par exemple un id
-// alors le premier paramètre de la méthode du contrôleur sera directement
-// cet id
+
 $dispatcher = new Dispatcher($match, '\App\Controllers\ErrorController::err404');
+
+//on veut récupérerer l'identifiant de la route actuelle pour le recevoir lors de l'instanciation du contrôleur en allant le chercher dans le array $match
+if ($match !== false){
+
+$dispatcher->setControllersArguments($match['name']);
+
+
+
+}
+
+
+
+
 // Une fois le "dispatcher" configuré, on lance le dispatch qui va exécuter la méthode du controller
 $dispatcher->dispatch();

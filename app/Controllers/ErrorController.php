@@ -26,6 +26,8 @@ class ErrorController extends CoreController
     {
         header('HTTP/1.1 403 Forbidden');
         $this->show('error/err403');
+
+        echo 'Accès interrdit';
         exit();
     }
 

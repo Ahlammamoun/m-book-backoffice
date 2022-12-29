@@ -14,6 +14,7 @@
 
 
     <form action="" method="POST" class="mt-5">
+    <input type="hidden" name="token" value="<?= $token ?>">
         <div class="mb-3">
             <label for="firstname" class="form-label">Prénom</label>
             <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom de l'utilisateur" value="<?php if (isset($userToInsert)) {

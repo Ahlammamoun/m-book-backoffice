@@ -5,6 +5,95 @@ namespace App\Controllers;
 class CoreController
 {
 
+    public function __construct($routeId = '')
+    {
+
+        //dump($routeId);
+
+        //on définit dans un tableau les permissions pour les routes nécéssitant une connexion  utilisateur
+
+        $accessControlList = [
+
+            'main-home' => ['admin', 'catalog-manager'],
+            'user-add' => ['admin'],
+            'user-create' =>  ['admin'],
+            'user-list' => ['admin'],
+            'category-add' =>  ['admin', 'catalog-manager'],
+            'category-create' => ['admin', 'catalog-manager'],
+            'category-list' => ['admin'],
+            'category-update' => ['admin', 'catalog-manager'],
+            'category-update-post' => ['admin', 'catalog-manager'],
+            'category-delete' => ['admin', 'catalog-manager'],
+            'product-add' =>  ['admin', 'catalog-manager'],
+            'product-create' => ['admin', 'catalog-manager'],
+            'product-list' => ['admin'],
+            'product-update' => ['admin', 'catalog-manager'],
+            'product-update-post' => ['admin', 'catalog-manager'],
+            'product-delete' => ['admin', 'catalog-manager'],
+
+
+
+
+
+
+
+
+
+        ];
+
+
+        if (array_key_exists($routeId, $accessControlList)) {
+            $authorizedRoles = $accessControlList[$routeId];
+            $this->checkAuthorization($authorizedRoles);
+        }
+
+
+        CoreController::checkCsrfToken($routeId);
+    }
+    public static function checkCsrfToken($routeId)
+    {
+        // Liste des routes nécessitant un token CSRF en POST
+        $csrfTokenToCheckInPost = [
+            'user-create',
+            'category-create'
+            // etc...
+        ];
+
+        // Si la route actuelle nécessite la vérification d'un token anti-csrf ?
+        if (in_array($routeId, $csrfTokenToCheckInPost)) {
+
+            // On récupère le token en POST
+            $formToken = filter_input(INPUT_POST, 'token');
+
+            // On récupère le token en SESSION
+            $sessionToken = isset($_SESSION['token']) ? $_SESSION['token'] : '';
+            /*if (isset($_SESSION['token'])) {
+                $sessionToken = $_SESSION['token'];
+            } else {
+                $sessionToken = ''; // valeur par défaut
+            }*/
+
+            //dump($routeId);
+            //dump($formToken);
+            //dump($_SESSION);
+            //dump($sessionToken);
+            if (empty($formToken) || empty($sessionToken) || $formToken !== $sessionToken) {
+                // Alors on affiche une 403 Accès interdit
+                $errorController = new ErrorController();
+                $errorController->err403();
+            } else {
+                // Sinon tout va bien : accès autorisé
+                // on peut alors supprimer le token pour ne pas qu'il puisse resservir une deuxième fois
+                unset($_SESSION['token']);
+            }
+            //dump($_SESSION);
+        }
+        // Sinon, on ne fait rien, il n'y a rien à vérifier
+
+        // TODO les vérifications pour les routes en GET
+        // On pourrait traier les routes en GET et POST mais ça compliquerait encore plus les choses
+    }
+
     protected function redirect($routeId)
     {
 
