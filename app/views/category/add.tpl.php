@@ -3,6 +3,7 @@
     <h2>Ajouter une catégorie</h2>
 
     <form action="" method="POST" class="mt-5">
+    <input type="hidden" name="token" value="<?= $token ?>">
         <div class="mb-3">
             <label for="name" class="form-label">Nom</label>
             <input type="text" class="form-control" id="name" placeholder="Nom de la catégorie" name="name">

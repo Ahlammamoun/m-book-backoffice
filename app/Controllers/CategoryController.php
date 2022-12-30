@@ -40,8 +40,12 @@ class CategoryController extends CoreController
 
     public function add()
     {
-
-        $this->show('category/add');
+       
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+        $this->show('category/add', [
+            'token' => $token,
+        ]);
     }
 
 
