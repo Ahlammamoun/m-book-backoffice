@@ -139,6 +139,19 @@ $router->map(
     'category-home-selection'
 );
 
+$router->map(
+    'POST',
+    '/category/home-selection',
+    [
+        'method' => 'homeSelectionPost',
+        'controller' => '\App\Controllers\CategoryController' // On indique le FQCN de la classe
+    ],
+    'category-home-selection-post'
+);
+
+
+
+
 //page liste de produit
 $router->map(
     'GET',

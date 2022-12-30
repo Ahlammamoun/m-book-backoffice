@@ -155,8 +155,38 @@ class CategoryController extends CoreController
 
             'categories_list' => $categoriesList,
         ]);
-        
+    }
 
 
+    /**méthode de traitement du formulaire de selection des categories sur l'acceuil */
+    public function homeSelectionPost()
+    {
+
+        /**on vérifit qu'on recoit bien les données */
+        dump($_POST);
+
+        //si pas d'info la valeur par défaul sera un tablea vide dans $emplacements
+        $emplacements = $_POST['emplacement'] ?? [];
+        dump($emplacements);
+
+
+        //on verifit que le tableau $emplacements a 5 valeurs
+
+        if (is_array($emplacements) && count($emplacements) === 5) {
+            $homeOrder = 1;
+            foreach ($emplacements as $idCategorie) {
+
+
+                $category = Category::find($idCategorie);
+                $category->setHomeOrder($homeOrder);
+
+                $homeOrder++;
+
+                $category->save();
+            }
+        } else {
+            // TODO 403 ou données invalides
+
+        }
     }
 }
