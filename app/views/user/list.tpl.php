@@ -37,7 +37,7 @@
                         <a href="#" class="btn btn-sm btn-dark">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class="btn btn-sm btn-danger">
+                        <a href="<?= $router->generate('user-delete', ['id' => $userObject->getId()]) ?>" class="btn btn-sm btn-danger">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </a>
                     </td>

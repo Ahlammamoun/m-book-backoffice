@@ -10,8 +10,6 @@ use App\Models\CoreModel;
 class CategoryController extends CoreController
 {
 
-
-
     public function list()
     {
         //on récupère les données de la requête findAll du model category
@@ -40,7 +38,7 @@ class CategoryController extends CoreController
 
     public function add()
     {
-       
+
         $token = bin2hex(random_bytes(32));
         $_SESSION['token'] = $token;
         $this->show('category/add', [
@@ -108,17 +106,17 @@ class CategoryController extends CoreController
     public function updatePost($categoryId)
     {
         global $router;
-        //dump($_POST);
+        //
         //je récupère et filtre les données
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
         $subtitle = filter_input(INPUT_POST, 'subtitle', FILTER_SANITIZE_SPECIAL_CHARS);
         $picture = filter_input(INPUT_POST, 'picture');
-
+        //dump($_POST);
 
         //je récupère l'objet à mettre à jour
         $categoryToUpdate = Category::find($categoryId);
         //dump($categoryToUpdate);
-
+        //dump($categoryToUpdate);
 
         //je change les valeurs des propriétés de l'objet categorie
         $categoryToUpdate->setName($name);
@@ -149,6 +147,10 @@ class CategoryController extends CoreController
 
     public function homeSelection()
     {
+
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+
         //on récupère les informations
 
         $categoriesList = Category::findAll();
@@ -158,6 +160,7 @@ class CategoryController extends CoreController
 
 
             'categories_list' => $categoriesList,
+            'token' => $token,
         ]);
     }
 
@@ -166,12 +169,13 @@ class CategoryController extends CoreController
     public function homeSelectionPost()
     {
 
+
         /**on vérifit qu'on recoit bien les données */
-        dump($_POST);
+        // dump($_POST);
 
         //si pas d'info la valeur par défaul sera un tablea vide dans $emplacements
         $emplacements = $_POST['emplacement'] ?? [];
-        dump($emplacements);
+        // dump($emplacements);
 
 
         //on verifit que le tableau $emplacements a 5 valeurs
@@ -187,6 +191,7 @@ class CategoryController extends CoreController
                 $homeOrder++;
 
                 $category->save();
+                $this->redirect('category-list');
             }
         } else {
             // TODO 403 ou données invalides

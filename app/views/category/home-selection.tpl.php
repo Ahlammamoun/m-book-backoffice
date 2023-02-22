@@ -1,7 +1,7 @@
 <div class="container my-4">
 
     <form action="" method="POST" class="mt-5">
-
+    <input type="hidden" name="token" value="<?= $token ?>">
         <div class="row">
         <?php for ($numberEmplacement = 1 ; $numberEmplacement <= 5 ; $numberEmplacement ++): ?>
 

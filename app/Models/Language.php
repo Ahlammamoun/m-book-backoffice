@@ -30,27 +30,28 @@ class Language extends CoreModel
      * @param int $languagedId ID de la langue
      * @return Language
      */
-   static public function find($languageId)
+    static public function find($languageId)
     {
-        // se connecter à la BDD
+        // récupérer un objet PDO = connexion à la BDD
         $pdo = Database::getPDO();
 
-        // écrire notre requête
+        // on écrit la requête SQL pour récupérer le produit
         $sql = '
             SELECT *
             FROM language
             WHERE id = ' . $languageId;
 
-        // exécuter notre requête
+        // query ? exec ?
+        // On fait de la LECTURE = une récupration => query()
+        // si on avait fait une modification, suppression, ou un ajout => exec
         $pdoStatement = $pdo->query($sql);
 
-        // un seul résultat => fetchObject
+        // fetchObject() pour récupérer un seul résultat
+        // si j'en avais eu plusieurs => fetchAll
         $language = $pdoStatement->fetchObject('App\Models\Language');
 
-        // retourner le résultat
         return $language;
     }
-
     /**
      * Méthode permettant de récupérer tous les enregistrements de la table langue
      *

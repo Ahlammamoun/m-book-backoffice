@@ -286,6 +286,22 @@ $router->map(
     ],
     'user-create'
 );
+
+$router->map(
+    'GET',
+    '/user/delete/[i:id]',
+    [
+        'method' => 'delete',
+        'controller' => '\App\Controllers\UserController' // On indique le FQCN de la classe
+    ],
+    'user-delete'
+);
+
+
+
+
+
+
 /*Dispatch */
 
 // On demande à AltoRouter de trouver une route qui correspond à l'URL courante

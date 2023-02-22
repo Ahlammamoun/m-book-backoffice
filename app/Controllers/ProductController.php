@@ -5,6 +5,11 @@ namespace App\Controllers;
 
 use App\Models\CoreModel;
 use App\Models\Product;
+use App\Models\Tag;
+use App\Models\Language;
+use App\Models\Category;
+use App\Models\Etat;
+
 
 class ProductController extends CoreController
 {
@@ -85,16 +90,31 @@ class ProductController extends CoreController
     {
 
         $product = Product::find($productId);
-        dump($product);
+        $languagesList= Language::findAll();
+        $tagsList = Tag::findAll();
+        $categoriesList = Category::findAll();
+        $etatsList = Etat::findAll();
+
+
+
+        //dump($product);
+        //dump($tagsList);
         $this->show('product/edit', [
             'product' => $product,
+            'tags_list' => $tagsList,
+            'languages_list' => $languagesList,
+            'categories_list' => $categoriesList,
+            'etats_list' => $etatsList,
         ]);
     }
+
+
+
 
     public function updatePost($productId)
     {
         global $router;
-        //dump($_POST);
+      
         //je récupère et filtre les données
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $description = filter_input(INPUT_POST, 'description');
@@ -102,14 +122,15 @@ class ProductController extends CoreController
         $price = filter_input(INPUT_POST, 'price');
         $rate = filter_input(INPUT_POST, 'rate');
         $status = filter_input(INPUT_POST, 'status');
+        $category_id = filter_input(INPUT_POST, 'category_id');
         $language_id = filter_input(INPUT_POST, 'language_id');
         $etat_id = filter_input(INPUT_POST, 'etat_id');
-        $category_id = filter_input(INPUT_POST, 'category_id');
-
+       // $category_id = filter_input(INPUT_POST, 'category_id');
+        dump($_POST);
 
         //je récupère l'objet à mettre à jour
-        $productToUpdate = Product::find($productId);
-
+        $productToUpdate =  Product::find($productId);
+        dump($productToUpdate);
 
 
         //je change les valeurs des propriétés de l'objet categorie $product->setName($name);
@@ -118,16 +139,19 @@ class ProductController extends CoreController
         $productToUpdate->setPrice($price);
         $productToUpdate->setRate($rate);
         $productToUpdate->setStatus($status);
+        $productToUpdate->setCategoryId($category_id);
         $productToUpdate->setLanguageId($language_id);
         $productToUpdate->setEtatId($etat_id);
-        $productToUpdate->setCategoryId($category_id);
-
+       // $productToUpdate->setCategoryId($category_id);
+      // dump($productToUpdate);
 
         if ($productToUpdate->save()) {
             //si l'ajout en bdd est ok , on redirige vers la liste des catégories
 
             $this->redirect('product-list');
-        };
+        } else {
+            exit("Echec lors de la momdif");
+        }
 
 
     }

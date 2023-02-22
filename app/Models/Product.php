@@ -47,187 +47,18 @@ class Product extends CoreModel
      * @var int
      */
     private int $etat_id;
+    /** 
+    * @var int
+    */
+   
+ 
 
 
-    /**
-     * Get the value of name
-     *
-     * @return  string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
-    /**
-     * Set the value of name
-     *
-     * @param  string  $name
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
 
-    /**
-     * Get the value of description
-     *
-     * @return  string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
-    /**
-     * Set the value of description
-     *
-     * @param  string  $description
-     */
-    public function setDescription(string $description)
-    {
-        $this->description = $description;
-    }
 
-    /**
-     * Get the value of picture
-     *
-     * @return  string
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
 
-    /**
-     * Set the value of picture
-     *
-     * @param  string  $picture
-     */
-    public function setPicture(string $picture)
-    {
-        $this->picture     = $picture;
-    }
-
-    /**
-     * Get the value of price
-     *
-     * @return  float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set the value of price
-     *
-     * @param  float  $price
-     */
-    public function setPrice(float $price)
-    {
-        $this->price       = $price;
-    }
-
-    /**
-     * Get the value of rate
-     *
-     * @return  int
-     */
-    public function getRate()
-    {
-        return $this->rate;
-    }
-
-    /**
-     * Set the value of rate
-     *
-     * @param  int  $rate
-     */
-    public function setRate(int $rate)
-    {
-        $this->rate        = $rate;
-    }
-
-    /**
-     * Get the value of status
-     *
-     * @return  int
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set the value of status
-     *
-     * @param  int  $status
-     */
-    public function setStatus(int $status)
-    {
-        $this->status      = $status;
-    }
-
-    /**
-     * Get the value of language_id
-     *
-     * @return  int
-     */
-    public function getLanguageId()
-    {
-        return $this->language_id;
-    }
-
-    /**
-     * Set the value of language_id
-     *
-     * @param  int  $language_id
-     */
-    public function setLanguageId(int $language_id)
-    {
-        $this->language_id = $language_id;
-    }
-
-    /**
-     * Get the value of category_id
-     *
-     * @return  int
-     */
-    public function getCategoryId()
-    {
-        return $this->category_id;
-    }
-
-    /**
-     * Set the value of category_id
-     *
-     * @param  int  $category_id
-     */
-    public function setCategoryId(int $category_id)
-    {
-        $this->category_id = $category_id;
-    }
-
-    /**
-     * Get the value of etat_id
-     *
-     * @return  int
-     */
-    public function getEtatId()
-    {
-        return $this->etat_id;
-    }
-
-    /**
-     * Set the value of etat_id
-     *
-     * @param  int  $etat_id
-     */
-    public function setEtatId(int $etat_id)
-    {
-        $this->etat_id     = $etat_id;
-    }
 
     /**
      * Méthode permettant de récupérer un enregistrement de la table Product en fonction d'un id donné
@@ -304,7 +135,7 @@ class Product extends CoreModel
         // Ecriture de la requête INSERT INTO
         //On met des côtes pour les chaînes de caractères dans les VALUES
         $sql = "
-            INSERT INTO `product` (name, description, picture, price, rate, status, language_id, category_id, etat_id )
+            INSERT INTO `product` (name, description, picture, price, rate, status, language_id, category_id, etat_id)
             VALUES (:name, :description, :picture, :price, :rate, :status, :language_id, :category_id, :etat_id)
             
         ";
@@ -321,6 +152,7 @@ class Product extends CoreModel
         $pdoStatement->bindValue(':language_id', $this->getLanguageId(), PDO::PARAM_INT);
         $pdoStatement->bindValue(':category_id', $this->getCategoryId(), PDO::PARAM_INT);
         $pdoStatement->bindValue(':etat_id', $this->getEtatId(), PDO::PARAM_INT);
+     
 
         $pdoStatement->execute();
         // Execution de la requête d'insertion (exec, pas query)
@@ -344,9 +176,51 @@ class Product extends CoreModel
 
 
 
-    public function update()
-    {
+  
+        public function update()
+        {
+            // Récupération de l'objet PDO représentant la connexion à la DB
+            $pdo = Database::getPDO();
+    
+           // on prépare la requete
+           $sql = "
+                UPDATE `product`
+                SET
+                    name = :name,
+                    description = :description,
+                    picture = :picture,
+                    price = :price,
+                    rate = :rate,
+                    status = :status,
+                    language_id = :language_id,
+                    category_id = :category_id,
+                    etat_id = :etat_id,
+                    updated_at = NOW()
+                WHERE id = :id
+            ";
+    
+            
+            $pdoStatement = $pdo->prepare($sql);
 
+            $pdoStatement->bindValue(':id', $this->getId(), PDO::PARAM_STR);
+            $pdoStatement->bindValue(':name', $this->getName(), PDO::PARAM_STR);
+            $pdoStatement->bindValue(':description', $this->getDescription(), PDO::PARAM_STR);
+            $pdoStatement->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
+            $pdoStatement->bindValue(':price', $this->getPrice(), PDO::PARAM_INT);
+            $pdoStatement->bindValue(':rate', $this->getRate(), PDO::PARAM_STR);
+            $pdoStatement->bindValue(':status', $this->getStatus(), PDO::PARAM_STR);
+            $pdoStatement->bindValue(':language_id', $this->getLanguageId(), PDO::PARAM_INT);
+            $pdoStatement->bindValue(':category_id ', $this->getCategoryId(), PDO::PARAM_STR);
+            $pdoStatement->bindValue(':etat_id', $this->getEtatId(), PDO::PARAM_INT);
+
+            $pdoStatement->execute();
+    
+            $updatedRows = $pdoStatement->rowCount();
+    
+            return ($updatedRows > 0);
+           
+    
+        
 
 
         
@@ -374,6 +248,196 @@ class Product extends CoreModel
 
 
 
+ /**
+     * Get the value of name
+     *
+     * @return  string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @param  string  $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
+       
+    }
+
+    /**
+     * Get the value of description
+     *
+     * @return  string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @param  string  $description
+     */
+    public function setDescription(string $description)
+    {
+    $this->description = $description;
+}
+
+    /**
+     * Get the value of picture
+     *
+     * @return  string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of picture
+     *
+     * @param  string  $picture
+     */
+    public function setPicture(string $picture)
+    {
+        $this->picture     = $picture;
+       
+    }
+
+    /**
+     * Get the value of price
+     *
+     * @return  float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @param  float  $price
+     */
+    public function setPrice(float $price)
+    {
+        $this->price       = $price;
+       
+    }
+
+    /**
+     * Get the value of rate
+     *
+     * @return  int
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    /**
+     * Set the value of rate
+     *
+     * @param  int  $rate
+     */
+    public function setRate(int $rate)
+    {
+        $this->rate        = $rate;
+       
+    }
+
+    /**
+     * Get the value of status
+     *
+     * @return  int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     *
+     * @param  int  $status
+     */
+    public function setStatus($status)
+    {
+        $this->status      = $status;
+        
+    }
+
+    /**
+     * Get the value of language_id
+     *
+     * @return  int
+     */
+    public function getLanguageId()
+    {
+        return $this->language_id;
+    }
+
+    /**
+     * Set the value of language_id
+     *
+     * @param  int  $language_id
+     */
+    public function setLanguageId($language_id)
+    {
+        $this->language_id = $language_id;
+       
+    }
+
+    /**
+     * Get the value of category_id
+     *
+     * @return  int
+     */
+    
+    public function getCategoryId()
+    {
+        return $this->category_id;
+    }
+
+    /**
+     * Set the value of category_id
+     *
+     * @param  int  $category_id
+     */
+    public function setCategoryId($category_id)
+    {
+        $this->category_id = $category_id;
+        
+
+    }
+
+    /**
+     * Get the value of etat_id
+     *
+     * @return  int
+     */
+    public function getEtatId()
+    {
+        return $this->etat_id;
+    }
+
+    /**
+     * Set the value of etat_id
+     *
+     * @param  int  $etat_id
+     */
+    public function setEtatId($etat_id)
+    {
+        $this->etat_id   = $etat_id;
+       
+    }
+ 
 
 
 }

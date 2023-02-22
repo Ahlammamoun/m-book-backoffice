@@ -10,7 +10,7 @@ use PDO;
  *
  * Un objet issu de cette classe réprésente un enregistrement dans cette table
  */
-class Type extends CoreModel
+class Etat extends CoreModel
 {
     // Les propriétés représentent les champs
     // Attention il faut que les propriétés aient le même nom (précisément) que les colonnes de la table

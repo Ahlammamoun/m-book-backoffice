@@ -42,34 +42,46 @@
                 }
                     ?>> 
             </div>
+            <!--<?php dump($languages_list)?>-->
             <div class="mb-3">
                 <label for="language_id">Langue</label>
             <select  class="form-select" name="language_id" id="language_id" required>
                 <option disabled>--Choix de la langue--</option>
-                <option value="2">Français</option>
-                <option value="3">Anglais</option>
-                <option value="1">Allemand</option>
-                <option value="2">Arabe </option>
+                <?php foreach($languages_list as $languages): ?>
+                <option value="<?= $languages->getId()?>"><?= $languages->getName()?></option>
+                <?php endforeach; ?>
             </select>
             </div>
             <div class="mb-3">
+            <!--<?php dump($categories_list)?>-->
                 <label for="category_id">Categorie</label>
             <select  class="form-select" name="category_id" id="category_id">
                 <option value="">--Choix de la categorie--</option>
-                <option value="2">Romance</option>
-                <option value="3">Asie</option>
-                <option value="1">Recherche</option>
+                <?php foreach($categories_list as $category):?>
+                <option value="<?= $category->getId() ?>"><?= $category->getName() ?></option>
+                <?php endforeach; ?>
             </select>
             </div>
+            <!--<?php dump($etats_list)?>-->
             <div class="mb-3">
                 <label for="etat_id">Etat</label>
             <select  class="form-select" name="etat_id" id="etat_id" required >
                 <option disabled  >--Choix de l'état--</option>
-                <option value="3">Correct</option>
-                <option value="1">Très bon état</option>
+                <?php foreach($etats_list as $etat):?>
+                <option value="<?= $etat->getId() ?>"><?= $etat->getName() ?></option>
+                <?php endforeach; ?>
             </select>
             </div>
-
+           <!--<?php dump($tags_list) ;?>-->
+            <div class="mb-3">
+                <label for="tag_id">Tags</label>
+            <select  class="form-select" name="tag_id" id="tag_id" require multiple size="8" >
+                <option disabled  >--Choix des tags--</option>
+                <?php foreach($tags_list as $tag): ?>
+                <option value="<?= $tag->getId()?>"><?= $tag->getName()?></option>
+                <?php endforeach; ?>
+            </select>
+            </div>
 
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-dark mt-5">Valider</button>

@@ -12,7 +12,7 @@
                 <th scope="col">Status</th>
 
 
-
+<!--<?php var_dump($product_list) ?>-->
             </tr>
         </thead>
         <tbody>

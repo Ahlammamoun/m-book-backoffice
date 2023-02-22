@@ -154,4 +154,34 @@ class UserController extends CoreController
         //on redirige vers l'acceuil
         $this->redirect('main-home');
     }
+
+
+
+    public function delete($id)
+    {
+
+        $userDelete = AppUser::find($id);
+
+        if ($userDelete->delete()) {
+            $this->redirect('user-list');
+        } else {
+            exit("Echec lors de la suppression");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -18,8 +18,9 @@ class CoreController
             'user-add' => ['admin'],
             'user-create' =>  ['admin'],
             'user-list' => ['admin'],
+            'user-delete' => ['admin'],
             'category-add' =>  ['admin', 'catalog-manager'],
-            'category-create' => ['admin', 'catalog-manager'],
+            'category-create' => ['admin'],
             'category-list' => ['admin'],
             'category-update' => ['admin', 'catalog-manager'],
             'category-update-post' => ['admin', 'catalog-manager'],
@@ -30,14 +31,8 @@ class CoreController
             'product-update' => ['admin', 'catalog-manager'],
             'product-update-post' => ['admin', 'catalog-manager'],
             'product-delete' => ['admin', 'catalog-manager'],
-
-
-
-
-
-
-
-
+            'category-home-selection-post' => ['admin'],
+            'category-home-selection' => ['admin'],
 
         ];
 
@@ -55,7 +50,8 @@ class CoreController
         // Liste des routes nécessitant un token CSRF en POST
         $csrfTokenToCheckInPost = [
             'user-create',
-            'category-create'
+            'category-create',
+            'category-home-selection-post',
             // etc...
         ];
 
@@ -99,6 +95,7 @@ class CoreController
 
         global $router;
         header('Location: ' . $router->generate($routeId));
+        exit();
     }
 
     protected function checkAuthorization($authorizedRoles)

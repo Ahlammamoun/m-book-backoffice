@@ -20,6 +20,7 @@ class ErrorController extends CoreController
 
         // Puis on gère l'affichage
         $this->show('error/err404');
+        exit();
     }
 
     public function err403()
