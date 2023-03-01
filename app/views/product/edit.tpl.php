@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container my-4 bg-dark text-light">
         <a href="<?= $router->generate('product-list')?>" class="btn btn-dark float-end">Retour</a>
         <h2>Modifier un produit</h2>
      
@@ -84,7 +84,7 @@
             </div>
 
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-dark mt-5">Valider</button>
+                <button type="submit" class="btn btn-secondary mt-5">Valider</button>
             </div>
         </form>
     </div>

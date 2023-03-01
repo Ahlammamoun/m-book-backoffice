@@ -4,14 +4,22 @@
 
 .container.my-4 {
 
-  background-color: grey;
+  background-color: black;
+  color: white;
 }
-
+.container.my-4 {
+  background-color: black;
+  color: white;
+}
 th {
 
   width: 30%;
 }
 
 form.mt-5 {
-  background-color: grey;
+  background-color: black;
+  color: white;
+}
+.container-fluid {
+  background-color: black;
 }

@@ -1,7 +1,6 @@
-<div class="container my-4">
-    <a href="<?= $router->generate('category-list')?>" class="btn btn-success float-end">Retour</a>
+<div class="container my-4 bg-dark text-light">
+    <a href="<?= $router->generate('category-list')?>" class="btn btn-dark float-end">Retour</a>
     <h2>Modifier une catégorie</h2>
-<!--<?php dump($category) ?>-->
     <form action="" method="POST" class="mt-5">
         <div class="mb-3">
             <label for="name" class="form-label">Nom</label>
@@ -26,7 +25,7 @@
             <input type="num" class="form-control" id="home_order" placeholder="order" aria-describedby="home_orderHelpBlock" name="home_order" value="<?= $category->getHomeOrder() ?>">
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary mt-5">Valider</button>
+            <button type="submit" class="btn btn-secondary mt-5">Valider</button>
         </div>
     </form>
 </div>

@@ -93,7 +93,7 @@ class UserController extends CoreController
 
     public function list()
     {
-        $this->checkAuthorization(['admin']);
+        $this->checkAuthorization(['admin', 'catalog-manager']);
         $usersList = AppUser::findAll();
         //dump($usersList);
 
