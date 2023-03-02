@@ -7,6 +7,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Sous-titre</th>
+                <th scope="col">Picture</th>
                 <th scope="col">Home order</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                     <th scope="row"><?= $CategoryObject->getId() ?></th>
                     <td><?= $CategoryObject->getName() ?></td>
                     <td><?= $CategoryObject->getSubtitle() ?></td>
+                    <td><?= $CategoryObject->getpicture()?></td>
                     <td><?= $CategoryObject->getHomeOrder() ?></td>
                     <td class="text-end">
                         <a href="<?= $router->generate('category-update', ['id' => $CategoryObject->getId()]) ?>" class="btn btn-sm btn-dark">
@@ -25,8 +27,6 @@
                         <a href="<?= $router->generate('category-delete', ['id' => $CategoryObject->getId()]) ?>" class="btn btn-sm btn-danger">
                             <i class="fa fa-trash-o"aria-hidden="true"></i>
                         </a>
-
-
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -1,5 +1,4 @@
 <div class="container my-4">
-
     <form action="" method="POST" class="mt-5">
     <input type="hidden" name="token" value="<?= $token ?>">
         <div class="row">
@@ -8,7 +7,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="emplacement<?= $numberEmplacement ?>">Emplacement <?= $numberEmplacement ?></label>
-                    <select class="form-control" id="emplacement1<?= $numberEmplacement ?>" name="emplacement[]">
+                    <select class="form-control" id="emplacement<?= $numberEmplacement ?>" name="emplacement[]">
                         <option value="">choisissez :</option>
                         <?php foreach ($categories_list as $category) : ?>
                             <?php

@@ -1,7 +1,7 @@
-<div class="container my-4">
+<div class="container my-4 ">
     <a href="<?= $router->generate('user-add') ?>" class="btn btn-dark float-end">Ajouter</a>
     <h2>Liste des utilisateurs</h2>
-    <table class="table table-hover mt-4">
+    <table class="table table-hover mt-4 text-light">
         <thead>
            
             <tr>

@@ -158,6 +158,8 @@ class Category extends CoreModel
         // Récupération de l'objet PDO représentant la connexion à la DB
         $pdo = Database::getPDO();
 
+
+        //si la requête contient des données dynamique on utilise prepare / bindvalue / execute pour se proteger des injection sql
         // Ecriture de la requête INSERT INTO
         //On met des côtes pour les chaînes de caractères dans les VALUES
         $sql = "

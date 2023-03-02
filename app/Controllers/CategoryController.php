@@ -73,23 +73,22 @@ class CategoryController extends CoreController
         $subtitle = filter_input(INPUT_POST, 'subtitle');
         $picture = filter_input(INPUT_POST, 'picture');
 
-
-
         //on créer un objet category on lui assigne nos valeurs
         $categoryToInsert = new Category();
         $categoryToInsert->setName($name);
         $categoryToInsert->setSubtitle($subtitle);
         $categoryToInsert->setPicture($picture);
 
-
-        //dump($categoryToInsert);
+       // dump($categoryToInsert);exit;
         //on insert les données en bdd
         if ($categoryToInsert->save()) {
+
+           
+            // dump($categoryToInsert);
+ 
             //si l'ajout en bdd est ok , on redirige vers la liste des catégories
             $this->redirect('category-list');
         };
-
-        //dump($categoryToInsert);
 
     }
 
@@ -171,31 +170,41 @@ class CategoryController extends CoreController
 
 
         /**on vérifit qu'on recoit bien les données */
-        // dump($_POST);
+        dump($_POST);
 
-        //si pas d'info la valeur par défaul sera un tablea vide dans $emplacements
+        //si pas d'info la valeur par défault sera un tableau vide dans $emplacements
         $emplacements = $_POST['emplacement'] ?? [];
-        // dump($emplacements);
+         dump($emplacements);
 
 
         //on verifit que le tableau $emplacements a 5 valeurs
 
         if (is_array($emplacements) && count($emplacements) === 5) {
+
+
+
             $homeOrder = 1;
-            foreach ($emplacements as $idCategorie) {
+            foreach ($emplacements as $idCategory) {
 
 
-                $category = Category::find($idCategorie);
+                $category = Category::find($idCategory);
                 $category->setHomeOrder($homeOrder);
+
+                $category->save();
 
                 $homeOrder++;
 
-                $category->save();
-                $this->redirect('category-list');
+              
+                //$this->redirect('category-list');
             }
+
         } else {
-            // TODO 403 ou données invalides
+            // TODO 403 ou données invalide
 
         }
+
+    
+
     }
 }
+
