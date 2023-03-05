@@ -177,54 +177,54 @@ class Product extends CoreModel
 
 
   
-        public function update()
-        {
-            // Récupération de l'objet PDO représentant la connexion à la DB
-            $pdo = Database::getPDO();
-    
-           // on prépare la requete
-           $sql = "
-                UPDATE `product`
-                SET
-                    name = :name,
-                    description = :description,
-                    picture = :picture,
-                    price = :price,
-                    rate = :rate,
-                    status = :status,
-                    language_id = :language_id,
-                    category_id = :category_id,
-                    etat_id = :etat_id,
-                    updated_at = NOW()
-                WHERE id = :id
-            ";
-    
-            
-            $pdoStatement = $pdo->prepare($sql);
+    public function update()
+    {
+        // Récupération de l'objet PDO représentant la connexion à la DB
+        $pdo = Database::getPDO();
 
-            $pdoStatement->bindValue(':id', $this->getId(), PDO::PARAM_STR);
-            $pdoStatement->bindValue(':name', $this->getName(), PDO::PARAM_STR);
-            $pdoStatement->bindValue(':description', $this->getDescription(), PDO::PARAM_STR);
-            $pdoStatement->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
-            $pdoStatement->bindValue(':price', $this->getPrice(), PDO::PARAM_INT);
-            $pdoStatement->bindValue(':rate', $this->getRate(), PDO::PARAM_STR);
-            $pdoStatement->bindValue(':status', $this->getStatus(), PDO::PARAM_STR);
-            $pdoStatement->bindValue(':language_id', $this->getLanguageId(), PDO::PARAM_INT);
-            $pdoStatement->bindValue(':category_id ', $this->getCategoryId(), PDO::PARAM_STR);
-            $pdoStatement->bindValue(':etat_id', $this->getEtatId(), PDO::PARAM_INT);
-
-            $pdoStatement->execute();
-    
-            $updatedRows = $pdoStatement->rowCount();
-    
-            return ($updatedRows > 0);
-           
-    
-        
-
+       // on prépare la requete
+       $sql = "
+            UPDATE `product`
+            SET
+                name = :name,
+                description = :description,
+                picture = :picture,
+                price = :price,
+                rate = :rate,
+                status = :status,
+                language_id = :language_id,
+                category_id = :category_id,
+                etat_id = :etat_id,
+                updated_at = NOW()
+            WHERE id = :id
+        ";
 
         
-    }
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':id', $this->getId(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':name', $this->getName(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':description', $this->getDescription(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':price', $this->getPrice(), PDO::PARAM_INT);
+        $pdoStatement->bindValue(':rate', $this->getRate(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':status', $this->getStatus(), PDO::PARAM_STR);
+        $pdoStatement->bindValue(':language_id', $this->getLanguageId(), PDO::PARAM_INT);
+        $pdoStatement->bindValue(':category_id', $this->getCategoryId(), PDO::PARAM_INT);
+        $pdoStatement->bindValue(':etat_id', $this->getEtatId(), PDO::PARAM_INT);
+
+        $pdoStatement->execute();
+
+        $updatedRows = $pdoStatement->rowCount();
+
+        return ($updatedRows > 0);
+       
+
+    
+
+
+    
+}
 
 
     public function delete()

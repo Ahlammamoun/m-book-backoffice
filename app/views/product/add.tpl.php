@@ -50,9 +50,12 @@
                 <label for="category_id">Categorie</label>
             <select  class="form-select" name="category_id" id="category_id">
                 <option value="">--Choix de la categorie--</option>
-                <option value="2">Romance</option>
+                <option value="2">Philosophique</option>
+                <option value="3">Histoire</option>
+                <option value="1">Sciences</option>
+                <option value="2">Policier</option>
                 <option value="3">Asie</option>
-                <option value="1">Recherche</option>
+                <option value="1">surnaturel</option>
             </select>
             </div>
             <div class="mb-3">

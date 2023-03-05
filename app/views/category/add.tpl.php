@@ -18,9 +18,7 @@
         <div class="mb-3">
             <label for="picture" class="form-label">Image</label>
             <input type="text" class="form-control" id="picture" placeholder="image jpg, gif, svg, png" aria-describedby="pictureHelpBlock" name="picture">
-            <small id="pictureHelpBlock" class="form-text text-muted">
-                URL relative d'une image (jpg, gif, svg ou png) fournie sur <a href="https://benoclock.github.io/S06-images/" target="_blank">cette page</a>
-            </small>
+          
         </div>
         <div class="row">
             <button type="submit" class="btn btn-dark mt-5">Valider</button>

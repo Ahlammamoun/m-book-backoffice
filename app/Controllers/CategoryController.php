@@ -167,44 +167,44 @@ class CategoryController extends CoreController
     /**méthode de traitement du formulaire de selection des categories sur l'acceuil */
     public function homeSelectionPost()
     {
+    /**on vérifit qu'on recoit bien les données */
+    //dump($_POST);
+
+    //si pas d'info la valeur par défault sera un tableau vide dans $emplacements
+    $emplacements = $_POST['emplacement'] ?? [];
+    //dump($emplacements);
 
 
-        /**on vérifit qu'on recoit bien les données */
-        dump($_POST);
+    //on verifit que le tableau $emplacements a 5 valeurs
 
-        //si pas d'info la valeur par défault sera un tableau vide dans $emplacements
-        $emplacements = $_POST['emplacement'] ?? [];
-         dump($emplacements);
+    if (is_array($emplacements) && count($emplacements) === 5) {
 
+        $homeOrder = 1;
+        foreach ($emplacements as $categoryId) {
+            $category = Category::find($categoryId);
+            $category->setHomeOrder($homeOrder);
 
-        //on verifit que le tableau $emplacements a 5 valeurs
+            $category->save();
 
-        if (is_array($emplacements) && count($emplacements) === 5) {
-
-
-
-            $homeOrder = 1;
-            foreach ($emplacements as $idCategory) {
-
-
-                $category = Category::find($idCategory);
-                $category->setHomeOrder($homeOrder);
-
-                $category->save();
-
-                $homeOrder++;
-
-              
-                //$this->redirect('category-list');
-            }
-
-        } else {
-            // TODO 403 ou données invalide
-
+            $homeOrder ++;
         }
 
-    
+        $this->redirect('category-list');
+    } else {
+            echo 'données invalides';
+        }
+
+
+
+
 
     }
+    
+    
+
 }
+   
+
+
+
 

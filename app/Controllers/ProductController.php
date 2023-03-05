@@ -126,14 +126,15 @@ class ProductController extends CoreController
         $language_id = filter_input(INPUT_POST, 'language_id');
         $etat_id = filter_input(INPUT_POST, 'etat_id');
        // $category_id = filter_input(INPUT_POST, 'category_id');
-        dump($_POST);
+       // dump($_POST);
 
         //je récupère l'objet à mettre à jour
         $productToUpdate =  Product::find($productId);
-        dump($productToUpdate);
+       // dump($productToUpdate);
 
 
         //je change les valeurs des propriétés de l'objet categorie $product->setName($name);
+        $productToUpdate->setName($name);
         $productToUpdate->setDescription($description);
         $productToUpdate->setPicture($picture);
         $productToUpdate->setPrice($price);
@@ -143,7 +144,7 @@ class ProductController extends CoreController
         $productToUpdate->setLanguageId($language_id);
         $productToUpdate->setEtatId($etat_id);
        // $productToUpdate->setCategoryId($category_id);
-      // dump($productToUpdate);
+       //dump($productToUpdate);
 
         if ($productToUpdate->save()) {
             //si l'ajout en bdd est ok , on redirige vers la liste des catégories

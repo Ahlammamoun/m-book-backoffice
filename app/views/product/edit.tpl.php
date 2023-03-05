@@ -5,14 +5,11 @@
         <form action="" method="POST" class="mt-5">
             <div class="mb-3">
                 <label for="name" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="name" placeholder="Nom du produit" required name="name" value="<?= $product->getName() ?>">
+                <input type="text" class="form-control" id="name" name="name" value="<?= $product->getName() ?>">
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label"  >Description</label>
-                <textarea id="description"  name="description"   class="form-control" placeholder="Description du produit" >value="<?= $product->getDescription() ?>"</textarea>
-                <small id="subtitleHelpBlock" class="form-text text-muted">
-                    Sera affiché sur la page d'accueil comme bouton devant l'image
-                </small>
+                <textarea id="description" name="description" class="form-control" placeholder="Description du produit"><?= $product->getDescription() ?></textarea>
             </div>
             <div class="mb-3">
                 <label for="picture" class="form-label">Image</label>
@@ -56,7 +53,7 @@
             <!--<?php dump($categories_list)?>-->
                 <label for="category_id">Categorie</label>
             <select  class="form-select" name="category_id" id="category_id">
-                <option value="">--Choix de la categorie--</option>
+                <option disabled>--Choix de la categorie--</option>
                 <?php foreach($categories_list as $category):?>
                 <option value="<?= $category->getId() ?>"><?= $category->getName() ?></option>
                 <?php endforeach; ?>

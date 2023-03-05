@@ -1,6 +1,6 @@
 <div class="form-group">
                     <label for="emplacement<?= $numberEmplacement ?>">Emplacement <?= $numberEmplacement ?></label>
-                    <select class="form-control" id="emplacement1<?= $numberEmplacement ?>" name="emplacement[]">
+                    <select class="form-control" id="emplacement<?= $numberEmplacement ?>" name="emplacement[]">
                         <option value="">choisissez :</option>
                         <?php foreach ($categories_list as $category) : ?>
                             <?php
