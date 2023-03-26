@@ -49,7 +49,7 @@
             <div class="mb-3">
                 <label for="category_id">Categorie</label>
             <select  class="form-select" name="category_id" id="category_id">
-                <option value="">--Choix de la categorie--</option>
+                <option disabled>--Choix de la categorie--</option>
                 <option value="2">Philosophique</option>
                 <option value="3">Histoire</option>
                 <option value="1">Sciences</option>

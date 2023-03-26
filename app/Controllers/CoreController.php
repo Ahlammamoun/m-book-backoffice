@@ -17,7 +17,7 @@ class CoreController
             'main-home' => ['admin', 'catalog-manager'],
             'user-add' => ['admin'],
             'user-create' =>  ['admin'],
-            'user-list' => ['admin', 'catalog-manager'],
+            'user-list' => ['admin','catalog-manager'],
             'user-delete' => ['admin'],
             'category-add' =>  ['admin', ],
             'category-create' => ['admin'],
